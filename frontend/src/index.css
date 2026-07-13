@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+  
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300;
+  }
+
+  body.dark {
+    @apply bg-slate-950 text-slate-50;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphic Styles */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-slate-200/50 shadow-sm transition-all duration-300;
+  }
+
+  .dark .glass-card {
+    @apply bg-slate-900/60 backdrop-blur-md border border-slate-800/40 shadow-lg;
+  }
+
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-md border-b border-slate-200/50 transition-all duration-300;
+  }
+
+  .dark .glass-nav {
+    @apply bg-slate-950/80 backdrop-blur-md border-b border-slate-900/60;
+  }
+
+  /* Form Inputs */
+  .form-input {
+    @apply w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white/50 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all;
+  }
+
+  .dark .form-input {
+    @apply border-slate-800 bg-slate-900/40 text-slate-50 placeholder-slate-500 focus:ring-brand-500 focus:border-brand-500;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-medium shadow-md shadow-brand-500/20 active:scale-95 transition-all flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium active:scale-95 transition-all flex items-center justify-center gap-2;
+  }
+
+  .dark .btn-secondary {
+    @apply bg-slate-900 hover:bg-slate-800 text-slate-300;
+  }
+
+  .btn-danger {
+    @apply px-5 py-2.5 bg-red-600 hover:bg-red-750 text-white rounded-xl font-medium active:scale-95 transition-all flex items-center justify-center gap-2;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 rounded-full;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-slate-800;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-300;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-700;
+  }
+}
+
+/* Page transitions & Utility classes */
+.page-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.page-slide-up {
+  animation: slideUp 0.35s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
