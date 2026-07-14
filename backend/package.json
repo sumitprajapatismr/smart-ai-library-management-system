@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Backend API for AI Powered Smart Library Management System",
   "main": "dist/index.js",
+  "engines": {
+  "node": "20.x"
+},
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -35,6 +38,6 @@
     "@types/node": "^20.12.7",
     "@types/nodemailer": "^6.4.15",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.4.5"
+    "typescript": "5.4.5"
   }
 }
