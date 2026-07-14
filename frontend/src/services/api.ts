@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,28 +16,28 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Intercept responses to handle auth errors (e.g. token expired)
+// Intercept responses to handle auth errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      // Token invalid or expired, force logout
+    if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      // Only redirect if we are not already on auth pages
-      if (!window.location.pathname.includes('/login') && 
-          !window.location.pathname.includes('/register') &&
-          !window.location.pathname.includes('/verify-email') &&
-          !window.location.pathname.includes('/forgot-password') &&
-          !window.location.pathname.includes('/reset-password')) {
+
+      if (
+        !window.location.pathname.includes('/login') &&
+        !window.location.pathname.includes('/register') &&
+        !window.location.pathname.includes('/verify-email') &&
+        !window.location.pathname.includes('/forgot-password') &&
+        !window.location.pathname.includes('/reset-password')
+      ) {
         window.location.href = '/login?expired=true';
       }
     }
+
     return Promise.reject(error);
   }
 );
